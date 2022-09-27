@@ -24,10 +24,15 @@
 
                         </div>
 
-                        <div>
-                            <button class='bg-slate-600 p-2 text-white rounded-md'>EDIT</button>
+                        <div class='flex gap-1'>
+                            <button class='bg-slate-600 p-2 text-white rounded-md hover:bg-slate-800'>EDIT</button>
 
-                            <button class='bg-red-600 p-2 text-white rounded-md'>DELETE</button>
+
+                            <form action="/users/{{ $user->id }}" method='post'>
+                                @csrf
+                                @method('delete')
+                                <button class='bg-red-600 p-2 text-white rounded-md hover:bg-red-800'>DELETE</button>
+                            </form>
                         </div>
 
                     </div>
