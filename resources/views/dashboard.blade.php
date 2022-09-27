@@ -13,7 +13,7 @@
                     <img src="{{ asset('storage/avatars/' . $user->avatar->avatar_path) }}" alt=""
                         class='w-28 h-28 object-cover rounded-full'>
 
-                    <h3 class='text-lg'>{{ $user->first_name . ' ' . $user->name }}</h3>
+                    <h3 class='text-lg'>{{ $user->name . ' ' . $user->first_name }}</h3>
                     <h4 class='text-slate-400'>{{ $user->is_Admin ? 'Admin' : 'Membre' }}</h4>
 
                     <div class='my-3'>
