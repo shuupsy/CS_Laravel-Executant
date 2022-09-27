@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('avatar_id')
-                ->default(1)
+                ->nullable()
                 ->constrained()
                 ->onDelete('cascade');
             $table->timestamps();

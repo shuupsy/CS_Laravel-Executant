@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Avatars;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +21,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $avatars = Avatars::whereNot('id', 1)->get();
+        return view('auth.register', compact('avatars'));
     }
 
     /**
@@ -41,13 +43,21 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'first_name' => $request->first_name,
-            'age' => $request->age,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->age = $request->age;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        if($request->avatar != null) {
+            $user->avatar_id = $request->avatar;
+        } else {
+            $user->avatar_id = 1;
+        }
+
+        $user->save();
+
 
         event(new Registered($user));
 
