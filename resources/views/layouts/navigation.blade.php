@@ -12,12 +12,29 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    {{-- Dashboard --}}
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
+                    {{-- Users --}}
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                         Users
+                    </x-nav-link>
+
+                    {{-- Avatars --}}
+                    <x-nav-link :href="route('avatars.index')" :active="request()->routeIs('avatars.index')">
+                        Avatars
+                    </x-nav-link>
+
+                    {{-- Categories --}}
+                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                        Categories
+                    </x-nav-link>
+
+                    {{-- Gallery --}}
+                    <x-nav-link :href="route('gallery.index')" :active="request()->routeIs('gallery.index')">
+                        Gallery
                     </x-nav-link>
 
                 </div>
