@@ -1,6 +1,10 @@
 Laravel_projet_executant
 ATTENTION : Bien lire avant de coder
 
+REGISTER:
+- Rôle 'membre' par défaut
+- Champs de base + Prénom + Age
+- Possibilité de choisir un avatar parmi une liste (select)
 
 DASHBOARD 
 - Toutes les données de la personne connectée 
@@ -9,7 +13,8 @@ DASHBOARD
     * AVATARS : Afficher les avatars. 
         .Possibilité d'ajouter un avatar (image) + champ pour le nom de l'avatar + button pour le supprimer.
 
-    * IMAGES : Page qui permet d'ajouter des 'images' (ne pas confondre avec les images de l'onglet 'avatar'), 
+    * IMAGES : 
+        .Page qui permet d'ajouter des 'images' (ne pas confondre avec les images de l'onglet 'avatar'), 
         .Possibilité de choisir la catégorie de l'image
 
     * CATEGORIES : Afficher la liste des catégories + button Add / Edit / Delete
@@ -18,11 +23,6 @@ DASHBOARD
 
     * UTILISATEURS : Afficher tous les users. 
         .Possibilité de changer leurs données (rôle aussi) sauf les users dont le rôle est admin.
-
-REGISTER:
-- Rôle 'membre' par défaut
-- Champs de base + Prénom + Age
-- Possibilité de choisir un avatar parmi une liste (select)
 
 
 ROLES
