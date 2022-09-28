@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Avatars;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\Foreach_;
 
 class AvatarsController extends Controller
 {
@@ -15,6 +17,13 @@ class AvatarsController extends Controller
      */
     public function index()
     {
+        $default = User::where('avatar_id',null)->get();
+        foreach($default as $d) {
+            $d->update([
+                'avatar_id' => 1,
+            ]);
+        };
+
         $avatars = Avatars::all();
         return view('pages.avatars', compact('avatars'));
     }
@@ -90,7 +99,8 @@ class AvatarsController extends Controller
     public function destroy($id)
     {
         $delete = Avatars::find($id);
-        
+
+
         Storage::delete('public/avatars/' . $delete->avatar_path);
 
         $delete->delete();
