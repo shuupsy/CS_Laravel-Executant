@@ -54,13 +54,22 @@ Fonctions:
 - Pagination quand on a plus de 5 utilisateurs
 
 
--Adapter votre projet avec les gates
--Rajouter un role 'webMaster' et un user avec ce rôle
--Rajouter une nouvelle page 'Blog' qui comporte plusieurs articles.
--Seul le webmaster peut rajouter un article, l'éditer et le supprimer.
+2ème PARTIE
+-Adapter le projet avec les gates
+
+-Rôle 'WebMaster' + un user avec ce rôle (voir plus bas)
+
+-Nouvelle page 'Blog' qui comporte plusieurs articles.
+
+
 -Cette page est visible par le rôle membre avec la méthode show. (sans les cruds)
 
-détails
-Le webmaster ne peut pas donner le rôle Admin et Webmaster à un user (Seulement le rôle Admin à ce pouvoir)
-Le webmaster ne peut ni éditer un autre webmaster, ni éditer un admin
-le webmaster ne peut ni supprimer un admin, ni un autre webmaster
+
+- Nouveau rôle : WEBMASTER
+    - Possibilité rajouter/éditer/supprimer un article
+    - Ne peut pas éditer les autres users
+    - Ne peut pas supprimer un admin, ni autre webmaster
+
+- ADMIN 
+    - Peut donner le rôle admin et webmaster à un user
+

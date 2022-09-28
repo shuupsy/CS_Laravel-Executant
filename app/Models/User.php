@@ -18,6 +18,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function avatar(){
+        return $this->belongsTo(Avatars::class);
+    }
+    
+    public function role() {
+        return $this->belongsTo(Roles::class);
+    }
+
     protected $fillable = [
         'name',
         'first_name',
@@ -46,7 +55,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function avatar(){
-        return $this->belongsTo(Avatars::class);
-    }
 }
