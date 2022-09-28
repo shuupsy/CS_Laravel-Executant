@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -13,7 +14,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categories::orderBy('category_name', 'asc')->get();
+        return view('pages.categories', compact('categories'));
     }
 
     /**
@@ -68,7 +70,12 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update = Categories::find($id);
+        $update->update([
+            'category_name' => $request -> category_name,
+        ]);
+
+        return redirect()->back()->with('success', "Catégorie '$request->category_name'  modifiée avec succès!");
     }
 
     /**
@@ -79,6 +86,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categories::destroy($id);
+        return redirect()->back();
     }
 }
