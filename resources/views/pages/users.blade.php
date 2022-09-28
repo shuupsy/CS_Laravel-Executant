@@ -19,7 +19,7 @@
                             <div>
                                 <h3 class='text-lg'>{{ $user->name . ' ' . $user->first_name }}</h3>
 
-                                <h4 class='text-slate-400'>{{ $user->is_Admin ? 'Admin' : 'Membre' }}</h4>
+                                <h4 class='text-slate-400 capitalize'>{{ $user->role->role  }}</h4>
                             </div>
 
                         </div>
