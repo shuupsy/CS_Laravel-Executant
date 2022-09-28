@@ -25,7 +25,9 @@
                         </div>
 
                         <div class='flex gap-1'>
-                            <button class='bg-slate-600 p-2 text-white rounded-md hover:bg-slate-800'>EDIT</button>
+                            <a href="/users/{{ $user->id}}/edit">
+                                <button class='bg-slate-600 p-2 text-white rounded-md hover:bg-slate-800'>EDIT</button>
+                            </a>
 
 
                             <form action="/users/{{ $user->id }}" method='post'>
