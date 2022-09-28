@@ -36,7 +36,11 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Categories::create([
+			'category_name' => $request -> category_name,
+		]);
+
+        return redirect()->back()->with('success', "Catégorie '$request->category_name' crée avec succès! ");
     }
 
     /**
@@ -86,7 +90,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        Categories::destroy($id);
-        return redirect()->back();
+        $delete = Categories::find($id);
+        $delete->delete();
+        return redirect()->back()->with('success', "Catégorie '$delete->category_name' supprimée!");
     }
 }
