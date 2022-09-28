@@ -21,7 +21,7 @@
                 <form action='/categories' method='post' class="p-6 bg-white border-b border-gray-200 flex items-center justify-center gap-2">
                     @csrf
 
-                    <x-text-input class="block mt-1 w-full" type="text" name="category_name" placeholder='exemple: Chats'
+                    <x-text-input class="block mt-1 w-full" type="text" name="category_name" placeholder='example: Cats'
                     :value="old('category_name')" required autofocus />
 
                     <button class='p-2 border-2 border-slate-400 hover:border-slate-800 rounded-md'>ADD</button>
