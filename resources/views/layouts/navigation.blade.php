@@ -17,20 +17,22 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    {{-- Users --}}
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                        Users
-                    </x-nav-link>
+                    @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 2)
+                        {{-- Users --}}
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            Users
+                        </x-nav-link>
 
-                    {{-- Avatars --}}
-                    <x-nav-link :href="route('avatars.index')" :active="request()->routeIs('avatars.index')">
-                        Avatars
-                    </x-nav-link>
+                        {{-- Avatars --}}
+                        <x-nav-link :href="route('avatars.index')" :active="request()->routeIs('avatars.index')">
+                            Avatars
+                        </x-nav-link>
 
-                    {{-- Categories --}}
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
-                        Categories
-                    </x-nav-link>
+                        {{-- Categories --}}
+                        <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                            Categories
+                        </x-nav-link>
+                    @endif
 
                     {{-- Gallery --}}
                     <x-nav-link :href="route('gallery.index')" :active="request()->routeIs('gallery.index')">

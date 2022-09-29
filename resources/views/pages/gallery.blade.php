@@ -14,7 +14,7 @@
                 </div>
             @endif
 
-
+            @can('admin')
             {{-- Nouvelle photo --}}
             <form action="/gallery" method="post" enctype="multipart/form-data"
                 class='w-2/4 p-6 bg-white border-b border-gray-200 flex flex-col items-center justify-center gap-3'>
@@ -54,6 +54,7 @@
 
                 <button class='p-2 border-2 border-slate-500 hover:border-slate-800 my-3 rounded-sm'>ADD</button>
             </form>
+            @endcan
 
             <div class='grid grid-cols-3 gap-2 my-5'>
                 @foreach ($categories as $category)
