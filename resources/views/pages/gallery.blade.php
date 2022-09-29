@@ -47,7 +47,8 @@
 
                     <select name="sender" id="sender"
                         class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 capitalize text-sm">
-                        <option value="{{ auth()->user()->id }}" class='capitalize'>{{ auth()->user()->name . ' ' . auth()->user()->first_name }}</option>
+                        <option value="{{ auth()->user()->id }}" class='capitalize'>
+                            {{ auth()->user()->name . ' ' . auth()->user()->first_name }}</option>
                     </select>
                 </div>
 
@@ -56,20 +57,37 @@
 
             <div class='grid grid-cols-3 gap-2 my-5'>
                 @foreach ($categories as $category)
-                <div class='p-6 bg-white border-b border-gray-200'>
-                    <h3 class='capitalize text-2xl font-bold'>{{ $category -> category_name }}</h3>
-                    {{-- Prévisualisation photos --}}
-                    <div class='flex flex-wrap justify-center gap-2 my-3'>
-                        @foreach ($images->where('category_id', $category->id) as $img)
-                            @if ($images)
+                    <div class='p-6 bg-white border-b border-gray-200'>
+                        <h3 class='capitalize text-2xl font-bold'>{{ $category->category_name }}</h3>
+                        {{-- Prévisualisation photos --}}
+                        <div class='flex flex-wrap justify-center gap-2 my-3'>
+                            {{-- S'il y a des images dans la catégorie --}}
+                            @if (count($images->where('category_id', $category->id)) > 0)
+                                @foreach ($images->where('category_id', $category->id) as $img)
+                                    <img src="{{ asset('storage/gallery/' . $img->image_path) }}" alt=""
+                                        class='w-20 h-20 object-cover border border-black'>
+                                @endforeach
 
+                                {{-- Remplir de div vides --}}
+                                @for ($i = count($images->where('category_id', $category->id)); $i < 6; $i++)
+                                    <div
+                                        class='w-20 h-20 object-cover border border-black flex justify-center items-center'>
+                                        <p>empty</p>
+                                    </div>
+                                @endfor
+                                {{-- Si y a pas d'images dans la catégorie --}}
+                            @else
+                                @for ($i = 0; $i < 6; $i++)
+                                    <div
+                                        class='w-20 h-20 object-cover border border-black flex justify-center items-center'>
+                                        <p>empty</p>
+                                    </div>
+                                @endfor
                             @endif
-                            <img src="{{ asset('storage/gallery/' . $img->image_path) }}" alt="" class='w-20 h-20 object-cover border border-black'>
-                        @endforeach
-                    </div>
+                        </div>
 
-                </div>
-            @endforeach
+                    </div>
+                @endforeach
 
             </div>
 

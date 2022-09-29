@@ -19,7 +19,7 @@ class GalleryController extends Controller
         $categories = Categories::orderby('category_name', 'asc')->get();
 
         $images = Gallery::orderBy('id', 'desc')
-            ->take(7)
+            ->take(8)
             ->get();
 
         return view('pages.gallery', compact('categories','images'));
