@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
@@ -13,7 +16,13 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categories::orderby('category_name', 'asc')->get();
+
+        $images = Gallery::orderBy('id', 'desc')
+            ->take(7)
+            ->get();
+
+        return view('pages.gallery', compact('categories','images'));
     }
 
     /**
@@ -34,7 +43,16 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Storage::put('public/gallery/', $request->file("image_gallery"));
+
+        $gallery = new Gallery();
+        $gallery -> user_id = $request->sender;
+        $gallery -> category_id = $request->category;
+        $gallery -> image_path = $request->file('image_gallery')->hashName();
+        $gallery->save();
+
+        return redirect()->back()->with('success', '(1) Image ajoutée avec succès!');
     }
 
     /**

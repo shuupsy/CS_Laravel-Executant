@@ -40,7 +40,7 @@
             <div class='grid grid-cols-5 gap-5'>
                 {{-- Liste d'avatars --}}
                 @foreach ($avatars as $avatar)
-                    <div class="p-6 bg-white border-b border-gray-200 flex flex-col items-center justify-center">
+                    <div class="p-6 bg-white border-b border-gray-200 flex flex-col items-center justify-center shadow-sm">
                         <img src="{{ asset('storage/avatars/' . $avatar->avatar_path) }}"
                             alt="{{ $avatar->avatar_name }}" class='w-28 h-28 object-cover rounded-full'>
 
