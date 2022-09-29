@@ -19,9 +19,7 @@ class AvatarsController extends Controller
     {
         $default = User::where('avatar_id',null)->get();
         foreach($default as $d) {
-            $d->update([
-                'avatar_id' => 1,
-            ]);
+            $d->update([ 'avatar_id' => 1]);
         };
 
         $avatars = Avatars::all();
@@ -53,7 +51,7 @@ class AvatarsController extends Controller
         $avatar -> avatar_path = $request->file('avatar')->hashName();
         $avatar->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', '(1) Avatar ajouté avec succès!');
     }
 
     /**
@@ -100,11 +98,10 @@ class AvatarsController extends Controller
     {
         $delete = Avatars::find($id);
 
-
         Storage::delete('public/avatars/' . $delete->avatar_path);
 
         $delete->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', '(1) Avatar supprimé avec succès !');
     }
 }
