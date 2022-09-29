@@ -9,7 +9,7 @@
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             {{-- Validation --}}
             @if ($message = Session::get('success'))
-                <div class='w-3/12 bg-white px-6 py-1 rounded-md text-sm'>
+                <div class='w-3/12 my-2 bg-white px-6 py-1 rounded-md text-sm'>
                     <p>{{ $message }}</p>
                 </div>
             @endif
@@ -61,29 +61,33 @@
                         <h3 class='capitalize text-2xl font-bold'>{{ $category->category_name }}</h3>
                         {{-- Prévisualisation photos --}}
                         <div class='flex flex-wrap justify-center gap-2 my-3'>
-                            {{-- S'il y a des images dans la catégorie --}}
+
+                            {{-- S'il y a des images --}}
                             @if (count($images->where('category_id', $category->id)) > 0)
                                 @foreach ($images->where('category_id', $category->id) as $img)
                                     <img src="{{ asset('storage/gallery/' . $img->image_path) }}" alt=""
                                         class='w-20 h-20 object-cover border border-black'>
                                 @endforeach
 
-                                {{-- Remplir de div vides --}}
-                                @for ($i = count($images->where('category_id', $category->id)); $i < 6; $i++)
-                                    <div
-                                        class='w-20 h-20 object-cover border border-black flex justify-center items-center'>
-                                        <p>empty</p>
-                                    </div>
-                                @endfor
-                                {{-- Si y a pas d'images dans la catégorie --}}
+                                @if (count($images->where('category_id', $category->id)) < 7)
+                                    @for ($i = count($images->where('category_id', $category->id)); $i < 6; $i++)
+                                        <div
+                                            class='w-20 h-20 object-cover bg-slate-300 border border-black flex justify-center items-center'>
+                                            <p>empty</p>
+                                        </div>
+                                    @endfor
+                                @endif
+
+                            {{-- Si y a pas d'images dans la catégorie --}}
                             @else
                                 @for ($i = 0; $i < 6; $i++)
                                     <div
-                                        class='w-20 h-20 object-cover border border-black flex justify-center items-center'>
+                                        class='w-20 h-20 object-cover border border-black flex justify-center items-center bg-slate-300'>
                                         <p>empty</p>
                                     </div>
                                 @endfor
                             @endif
+
                         </div>
 
                     </div>
