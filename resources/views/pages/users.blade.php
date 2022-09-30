@@ -46,7 +46,8 @@
                         </div>
 
                     </div>
-                @endforeach
+                    @endforeach
+                    <div>{{ $users ->links() }} </div>
 
             </div>
         </div>
