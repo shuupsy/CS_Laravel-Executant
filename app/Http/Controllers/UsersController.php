@@ -99,6 +99,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', '(1) Utilisateur supprimé avec succès!');
     }
 }

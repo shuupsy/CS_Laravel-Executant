@@ -7,6 +7,12 @@
 
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            {{-- Validation --}}
+            @if ($message = Session::get('success'))
+                <div class='my-2 bg-white px-6 py-1 rounded-md text-sm'>
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                 @foreach ($users as $user)
@@ -42,12 +48,20 @@
                                 </form>
                             @endcan
 
+                            @can('admin')
+                                <form action="/users/{{ $user->id }}" method='post'>
+                                    @csrf
+                                    @method('delete')
+                                    <button class='bg-red-600 p-2 text-white rounded-md hover:bg-red-800'>DELETE</button>
+                                </form>
+                            @endcan
+
 
                         </div>
 
                     </div>
-                    @endforeach
-                    <div>{{ $users ->links() }} </div>
+                @endforeach
+                <div>{{ $users->links() }} </div>
 
             </div>
         </div>
