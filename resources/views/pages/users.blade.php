@@ -23,7 +23,12 @@
                                 class='w-28 h-28 object-cover rounded-full'>
 
                             <div>
-                                <h3 class='text-lg'>{{ $user->name . ' ' . $user->first_name }}</h3>
+                                <h3 class='text-lg'>{{ $user->name . ' ' . $user->first_name }}
+                                    @if ($user->id == auth()->user()->id)
+                                    <span class='text-md'>(ME)</span>
+                                @endif
+                            </h3>
+
 
                                 <h4 class='text-slate-400 capitalize'>{{ $user->role->role }}</h4>
                             </div>
@@ -48,13 +53,16 @@
                                 </form>
                             @endcan
 
-                            @can('admin')
-                                <form action="/users/{{ $user->id }}" method='post'>
-                                    @csrf
-                                    @method('delete')
-                                    <button class='bg-red-600 p-2 text-white rounded-md hover:bg-red-800'>DELETE</button>
-                                </form>
-                            @endcan
+                            @if ($user->role_id == 1 || $user->id == auth()->user()->id)
+                                @can('webmaster')
+                                    <form action="/users/{{ $user->id }}" method='post'>
+                                        @csrf
+                                        @method('delete')
+                                        <button
+                                            class='bg-red-600 p-2 text-white rounded-md hover:bg-red-800'>DELETE</button>
+                                    </form>
+                                @endcan
+                            @endif
 
 
                         </div>
