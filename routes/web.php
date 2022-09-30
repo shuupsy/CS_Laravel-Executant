@@ -5,18 +5,15 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AvatarsController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\CategoriesController;
-
+use App\Http\Controllers\CurrentUserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $user = auth()->user();
-    return view('dashboard', compact('user'));
-})
+Route::resource('/dashboard',  CurrentUserController::class)
     ->middleware(['auth'])
-    ->name('dashboard');
+    ->names(['index' => 'dashboard']);
 
 Route::resource('/users', UsersController::class)
     ->names(['index' => 'users.index'])

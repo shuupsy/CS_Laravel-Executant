@@ -16,7 +16,7 @@ class access
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role_id == 2 || auth()->user()->role_id == 2) {
+        if(auth()->user()->role_id == 2 || auth()->user()->role_id == 3) {
             return $next($request);
         } else {
             abort(403);

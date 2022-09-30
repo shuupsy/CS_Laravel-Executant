@@ -15,45 +15,45 @@
             @endif
 
             @can('admin')
-            {{-- Nouvelle photo --}}
-            <form action="/gallery" method="post" enctype="multipart/form-data"
-                class='w-2/4 p-6 bg-white border-b border-gray-200 flex flex-col items-center justify-center gap-3'>
-                @csrf
-                {{-- Ajout photo --}}
-                <label
-                    class='w-28 h-28 border-2 my-3 border-slate-500 hover:text-sky-600 rounded-full flex justify-center items-center cursor-pointer'
-                    for="image_gallery">
-                    <input type="file" name="image_gallery" id="image_gallery" class='hidden'>
-                    <span class='text-6xl'>+</span>
-                </label>
+                {{-- Nouvelle photo --}}
+                <form action="/gallery" method="post" enctype="multipart/form-data"
+                    class='w-2/4 p-6 bg-white border-b border-gray-200 flex flex-col items-center justify-center gap-3'>
+                    @csrf
+                    {{-- Ajout photo --}}
+                    <label
+                        class='w-28 h-28 border-2 my-3 border-slate-500 hover:text-sky-600 rounded-full flex justify-center items-center cursor-pointer'
+                        for="image_gallery">
+                        <input type="file" name="image_gallery" id="image_gallery" class='hidden'>
+                        <span class='text-6xl'>+</span>
+                    </label>
 
-                <!-- Catégorie -->
-                <div class='flex items-center gap-3'>
-                    <x-input-label for="category" :value="__('Categories : ')" class='w-9/12 mx-auto' />
+                    <!-- Catégorie -->
+                    <div class='flex items-center gap-3'>
+                        <x-input-label for="category" :value="__('Categories : ')" class='w-9/12 mx-auto' />
 
-                    <select name="category" id="category"
-                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 capitalize">
+                        <select name="category" id="category"
+                            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 capitalize">
 
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" class='capitalize'>{{ $category->category_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" class='capitalize'>{{ $category->category_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                {{-- User --}}
-                <div class='flex items-center gap-3'>
-                    <x-input-label for="sender" :value="__('Photo envoyée par: ')" class='w-9/12 mx-auto' />
+                    {{-- User --}}
+                    <div class='flex items-center gap-3'>
+                        <x-input-label for="sender" :value="__('Photo envoyée par: ')" class='w-9/12 mx-auto' />
 
-                    <select name="sender" id="sender"
-                        class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 capitalize text-sm">
-                        <option value="{{ auth()->user()->id }}" class='capitalize'>
-                            {{ auth()->user()->name . ' ' . auth()->user()->first_name }}</option>
-                    </select>
-                </div>
+                        <select name="sender" id="sender"
+                            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 capitalize text-sm">
+                            <option value="{{ auth()->user()->id }}" class='capitalize'>
+                                {{ auth()->user()->name . ' ' . auth()->user()->first_name }}</option>
+                        </select>
+                    </div>
 
-                <button class='p-2 border-2 border-slate-500 hover:border-slate-800 my-3 rounded-sm'>ADD</button>
-            </form>
+                    <button class='p-2 border-2 border-slate-500 hover:border-slate-800 my-3 rounded-sm'>ADD</button>
+                </form>
             @endcan
 
             <div class='grid grid-cols-3 gap-2 my-5'>
@@ -79,7 +79,7 @@
                                     @endfor
                                 @endif
 
-                            {{-- Si y a pas d'images dans la catégorie --}}
+                                {{-- Si y a pas d'images dans la catégorie --}}
                             @else
                                 @for ($i = 0; $i < 6; $i++)
                                     <div

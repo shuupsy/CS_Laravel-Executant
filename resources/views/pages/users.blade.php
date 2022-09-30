@@ -19,22 +19,30 @@
                             <div>
                                 <h3 class='text-lg'>{{ $user->name . ' ' . $user->first_name }}</h3>
 
-                                <h4 class='text-slate-400 capitalize'>{{ $user->role->role  }}</h4>
+                                <h4 class='text-slate-400 capitalize'>{{ $user->role->role }}</h4>
                             </div>
 
                         </div>
 
                         <div class='flex gap-1'>
-                            <a href="/users/{{ $user->id}}/edit">
-                                <button class='bg-slate-600 p-2 text-white rounded-md hover:bg-slate-800'>EDIT</button>
-                            </a>
+
+                            {{-- Bouton EDIT --}}
+                            @can('admin')
+                                <a href="/users/{{ $user->id }}/edit">
+                                    <button class='bg-slate-600 p-2 text-white rounded-md hover:bg-slate-800'>EDIT</button>
+                                </a>
+                            @endcan
+
+                            {{-- Bouton DELETE --}}
+                            @can('admin')
+                                <form action="/users/{{ $user->id }}" method='post'>
+                                    @csrf
+                                    @method('delete')
+                                    <button class='bg-red-600 p-2 text-white rounded-md hover:bg-red-800'>DELETE</button>
+                                </form>
+                            @endcan
 
 
-                            <form action="/users/{{ $user->id }}" method='post'>
-                                @csrf
-                                @method('delete')
-                                <button class='bg-red-600 p-2 text-white rounded-md hover:bg-red-800'>DELETE</button>
-                            </form>
                         </div>
 
                     </div>

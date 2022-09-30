@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Avatars;
-use App\Models\Roles;
 use App\Models\User;
+use App\Models\Roles;
+use App\Models\Avatars;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class CurrentUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
-        return view('pages.users', compact('users'));
+        $user = auth()->user();
+        return view('dashboard', compact('user'));
     }
 
     /**
@@ -61,7 +60,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = auth()->user();
         $roles = Roles::all();
         $avatars = Avatars::all();
         return view('pages.edit.edit_users', compact('user', 'roles', 'avatars'));
@@ -77,7 +76,6 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $update = User::find($id);
-
         $update->update([
             'name' => $request->name,
             'first_name' => $request->first_name,
@@ -86,7 +84,7 @@ class UsersController extends Controller
             'avatar_id' => $request->avatar,
         ]);
 
-        return redirect('/users');
+        return redirect('/dashboard');
     }
 
     /**
@@ -97,7 +95,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return redirect()->back();
+        //
     }
 }

@@ -13,9 +13,15 @@
 
                     <div>
                         <img src="{{ asset('storage/avatars/' . $user->avatar->avatar_path) }}" alt=""
-                        class='w-24 h-24 my-3 object-cover rounded-full'>
+                            class='w-24 h-24 my-3 object-cover rounded-full'>
 
-                        <form action='/users/{{ $user->id }}' method='post'>
+
+                        @if (request()->is('dashboard/*'))
+                            <form action='/dashboard/{{ $user->id }}' method='post'>
+                        @else
+                            <form action='/users/{{ $user->id }}' method='post'>
+                        @endif
+                 {{--        <form action='/users/{{ $user->id }}' method='post'> --}}
                             @csrf
                             @method('patch')
 
@@ -45,8 +51,8 @@
                                         :value="$user->age" required autofocus />
                                 </div>
 
-                                   <!-- Email Address -->
-                                   <div>
+                                <!-- Email Address -->
+                                <div>
                                     <x-input-label for="email" :value="__('Email')" />
 
                                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"

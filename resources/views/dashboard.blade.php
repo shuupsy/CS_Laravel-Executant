@@ -25,7 +25,7 @@
                         <p>{{ $user->age }} ans</p>
                     </div>
 
-                    <a href="/users/{{ $user->id}}/edit">
+                    <a href="/dashboard/{{ $user->id}}/edit">
                         <button class='bg-slate-600 p-2 text-white rounded-md hover:bg-slate-800'>EDIT</button>
                     </a>
 

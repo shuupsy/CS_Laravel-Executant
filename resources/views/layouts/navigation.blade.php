@@ -17,12 +17,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 2)
+                    @if(auth()->user()->role_id == 2 || auth()->user()->role_id == 3)
+
                         {{-- Users --}}
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
                             Users
                         </x-nav-link>
 
+                    @endif
+
+                    @if(auth()->user()->role_id == 2)
                         {{-- Avatars --}}
                         <x-nav-link :href="route('avatars.index')" :active="request()->routeIs('avatars.index')">
                             Avatars
